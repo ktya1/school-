@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Презентация</title>
+    <style>
+        /* Обнуление отступов */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Контейнер для эффекта презентации */
+        article {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory; /* Включает прилипание слайдов */
+        }
+
+        /* Общие стили для каждого "слайда" */
+        section {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            scroll-snap-align: start; /* Точка фиксации слайда */
+            position: relative;
+            color: #fff;
+            padding: 0 10%;
+            box-sizing: border-box;
+        }
+
+        /* Затемняющий слой для читаемости текста поверх картинок */
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 1;
+        }
+
+        /* Контент внутри слайда */
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+            font-size: 1.8rem;
+            line-height: 1.6;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Заголовки (опционально для стиля) */
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Стилизация конкретных слайдов с фоновыми изображениями */
+        .climate {
+            background: url('https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+        }
+
+        .natural_zone {
+            background: url('https://avatars.mds.yandex.net/i?id=a574ecb7de871c0ce99dc29c330bea49_l-5219071-images-thumbs&n=13') no-repeat center center/cover;
+        }
+
+        .resourse {
+            background: url('https://images.unsplash.com/photo-1518005020481-a68515605041?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
+        }
+
+        .garden {
+            background: url('https://avatars.mds.yandex.net/i?id=612f92c3f0d96691fcd2302f2c30514c_l-5333380-images-thumbs&n=13') no-repeat center center/cover;
+        }
+
+        .slide2 {
+            background: url('https://images.unsplash.com/photo-1548625361-155deee2edd8?q=80&w=1935&auto=format&fit=crop') no-repeat center center/cover;
+        }
+
+        .slide3 {
+            background: url('https://images.unsplash.com/photo-1608155686393-8fdd966d784d?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
+        }
+
+        /* Скроллбар (опционально, делаем его тонким) */
+        article::-webkit-scrollbar {
+            width: 8px;
+        }
+        article::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        article::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+    </style>
+</head>
+<body>
+
+<article>
+    <!-- Слайд 1: Климат -->
+    <section class="climate">
+        <div class="content">
+            <h2>Климат</h2>
+            Субтропический средиземноморский. Зима мягкая и дождливая (средняя температура января около +10 °C), лето жаркое и сухое (средняя температура июля около +26 °С).
+        </div>
+    </section>
+
+    <!-- Слайд 2: Природная зона -->
+    <section class="natural_zone">
+        <div class="content">
+            <h2>Природная зона</h2>
+            Зона жестколистных вечнозеленых лесов и кустарников. Однако естественная растительность полностью замещена антропогенными ландшафтами.
+        </div>
+    </section>
+
+    <!-- Слайд 3: Ресурсы -->
+    <section class="resourse">
+        <div class="content">
+            <h2>Ресурсы</h2>
+            Собственные природные ресурсы полностью отсутствуют.
+        </div>
+    </section>
+
+    <!-- Слайд 4: Сады -->
+    <section class="garden">
+        <div class="content">
+            <h2>Сады</h2>
+            Естественных лесов нет, но около 50% территории страны (около 23 гектаров) занимают знаменитые Ватиканские сады, представляющие собой ухоженный парковый комплекс с искусственными насаждениями.
+        </div>
+    </section>
+
+    <!-- 2 слайд: ЭГП и экономика -->
+    <section class="slide2">
+        <div class="content">
+            <h2>ЭГП и экономика</h2>
+            ЭГП: Ватикан имеет уникальное анклавное положение. Он полностью окружен территорией Италии (длина границы всего 3,2 км), не имеет прямого выхода к морю, собственных портов или гражданских аэропортов. Вся логистика, водоснабжение и электросеть полностью зависят от Италии. Сфера деятельности: Основу составляет непроизводственная сфера (сфера услуг, религиозная и административная деятельность). Ватикан - это всемирный центр католической церкви. Крупнейшая экономика (источники доходов): Ватикан имеет уникальную некоммерческую экономику. Ее главные элементы: Туризм и паломничество: Продажа билетов в Музеи Ватикана, сувениров, почтовых марок и монет. Пожертвования: Добровольные взносы католиков со всего мира («Грош Святого Петра»). Инвестиции: Доходы от инвестиций в недвижимость, акции и облигации во многих странах мира через Институт религиозных дел (Банк Ватикана).
+        </div>
+    </section>
+
+    <!-- 3 слайд: Культура и традиции -->
+    <section class="slide3">
+        <div class="content">
+            <h2>Культура и традиции</h2>
+            Культурное наследие: Ватикан целиком внесен в список Всемирного наследия ЮНЕСКО. Здесь сосредоточены величайшие шедевры архитектуры и искусства: Собор Святого Петра, Сикстинская капелла с росписями Микеланджело и Апостольский дворец. Традиции: Вся жизнь подчинена строгому католическому уставу. Здесь нет постоянного коренного населения, а гражданство дают только на время выполнения государственной службы. Охрану Папы Римского традиционно с 1506 года осуществляет Швейцарская гвардия, воины которой до сих пор носят историческую форму эпохи Возрождения.
+        </div>
+    </section>
+</article>
+
+</body>
+</html>
