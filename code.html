@@ -1,218 +1,92 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Лошади — Главная</title>
-    <style>
-        /* Базовый сброс */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+{% extends 'base.html' %}
+
+{% block title %} POSTS {% endblock %}
+
+{% block links %}
+<style>
+    /* Сетка/список постов */
+    .posts-container {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    /* Карточка одного поста */
+    .post {
+        background-color: #faf7f2;
+        border: 1px solid #c9a876;
+        border-left: 5px solid #c9a876;
+        border-radius: 14px;
+        padding: 24px 30px;
+        box-shadow: 0 4px 16px rgba(56, 42, 33, 0.05);
+        transition: all 0.25s ease;
+    }
+
+    /* Эффект при наведении */
+    .post:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(56, 42, 33, 0.1);
+        border-left-color: #382a21;
+    }
+
+    /* Заголовок породы/поста */
+    .post h2 {
+        color: #382a21;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+        position: relative;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(201, 168, 118, 0.25);
+    }
+
+    /* Текст описания */
+    .post p {
+        color: #382a21;
+        font-size: 1.05rem;
+        line-height: 1.65;
+        font-weight: 400;
+        white-space: pre-line;
+    }
+
+    /* Заглушка, если постов нет */
+    .empty-posts {
+        text-align: center;
+        color: #8a7362;
+        font-size: 1.15rem;
+        font-style: italic;
+        padding: 60px 20px;
+        border: 2px dashed #c9a876;
+        border-radius: 16px;
+        background-color: rgba(240, 229, 211, 0.35);
+    }
+
+    @media (max-width: 600px) {
+        .post {
+            padding: 18px 20px;
         }
 
-        body {
-            background-color: #f0e5d3;
-            color: #382a21;
-            font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 15px;
+        .post h2 {
+            font-size: 1.3rem;
         }
 
-        /* Шапка страницы */
-        header {
-            width: 100%;
-            max-width: 960px;
-            background-color: #ffffff;
-            border: 1px solid #c9a876;
-            border-radius: 20px;
-            padding: 30px 35px;
-            box-shadow: 0 10px 30px rgba(56, 42, 33, 0.08);
-            margin-bottom: 25px;
-        }
-
-        /* Верх шапки: текст слева, фото справа */
-        .header-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
-            margin-bottom: 25px;
-        }
-
-        .left {
-            flex: 1;
-        }
-
-        .left h2 {
-            color: #c9a876;
-            font-size: 2.5rem;
-            letter-spacing: 4px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1;
-        }
-
-        .left h5 {
-            color: #382a21;
-            font-size: 1.2rem;
-            font-weight: 400;
-            line-height: 1.5;
-            padding-left: 14px;
-            border-left: 3px solid #c9a876;
-        }
-
-        .right {
-            flex-shrink: 0;
-        }
-
-        .header-img {
-            width: 280px;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 14px;
-            border: 1px solid #c9a876;
-            display: block;
-            box-shadow: 0 6px 18px rgba(56, 42, 33, 0.1);
-        }
-
-        /* Кнопки навигации */
-        .nav-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(201, 168, 118, 0.35);
-        }
-
-        .nav-actions a {
-            text-decoration: none;
+        .post p {
             font-size: 0.95rem;
-            font-weight: 600;
-            padding: 11px 22px;
-            border-radius: 10px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
         }
+    }
+</style>
+{% endblock %}
 
-        /* 1-я кнопка: Создать */
-        .nav-actions a:nth-child(1) {
-            background-color: #382a21;
-            color: #f0e5d3;
-            border: 2px solid #382a21;
-        }
-
-        .nav-actions a:nth-child(1):hover {
-            background-color: #c9a876;
-            border-color: #c9a876;
-            color: #382a21;
-        }
-
-        /* 2-я кнопка: Изменить */
-        .nav-actions a:nth-child(2) {
-            background-color: transparent;
-            color: #382a21;
-            border: 2px solid #c9a876;
-        }
-
-        .nav-actions a:nth-child(2):hover {
-            background-color: #f0e5d3;
-        }
-
-        /* 3-я кнопка: Удалить */
-        .nav-actions a:nth-child(3) {
-            background-color: transparent;
-            color: #8a3b3b;
-            border: 2px solid rgba(138, 59, 59, 0.35);
-            margin-left: auto;
-        }
-
-        .nav-actions a:nth-child(3):hover {
-            background-color: #8a3b3b;
-            color: #ffffff;
-            border-color: #8a3b3b;
-        }
-
-        /* Контейнер основного контента */
-        main {
-            width: 100%;
-            max-width: 960px;
-            background-color: #ffffff;
-            border: 1px solid #c9a876;
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(56, 42, 33, 0.05);
-            min-height: 250px;
-        }
-
-        /* Адаптив под мобилки */
-        @media (max-width: 768px) {
-            header, main {
-                padding: 20px 16px;
-            }
-
-            .header-top {
-                flex-direction: column-reverse;
-                gap: 18px;
-            }
-
-            .right, .header-img {
-                width: 100%;
-                height: 200px;
-            }
-
-            .left h2 {
-                font-size: 2rem;
-            }
-
-            .left h5 {
-                font-size: 1.1rem;
-            }
-
-            .nav-actions {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .nav-actions a,
-            .nav-actions a:nth-child(3) {
-                width: 100%;
-                margin-left: 0;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <div class="header-top">
-        <div class="left">
-            <h2>HORSE</h2>
-            <h5>лошади - это грация в каждом движении. Это необыкновенно и уникально</h5>
-        </div>
-
-        <div class="right">
-            <img src="https://i.pinimg.com/originals/b2/3b/f4/b23bf43d0a70911d9602a42ebc6a8bc9.jpg" alt="Лошади" class="header-img">
-        </div>
-    </div>
-
-    <div class="nav-actions">
-        <a href="">создать новую породу</a>
-        <a href="">изменить данные о породе</a>
-        <a href="">удалить породу</a>
-    </div>
-</header>
-
-<main>
-    {% block content %} {% endblock %}
-</main>
-
-</body>
-</html>
+{% block content %}
+<div class="posts-container">
+    {% for post in posts %}
+        <article class="post">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+        </article>
+    {% else %}
+        <p class="empty-posts">постов нет</p>
+    {% endfor %}
+</div>
+{% endblock %}
