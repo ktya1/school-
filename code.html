@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horse Page</title>
+    <title>Лошади — Главная</title>
     <style>
+        /* Базовый сброс */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -29,44 +30,42 @@
             background-color: #ffffff;
             border: 1px solid #c9a876;
             border-radius: 20px;
-            padding: 32px 36px;
+            padding: 30px 35px;
             box-shadow: 0 10px 30px rgba(56, 42, 33, 0.08);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
-        /* Верхняя часть: текст слева, картинка справа */
+        /* Верх шапки: текст слева, фото справа */
         .header-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 32px;
-            margin-bottom: 28px;
+            gap: 30px;
+            margin-bottom: 25px;
         }
 
-        /* Левая колонка с заголовками */
         .left {
             flex: 1;
         }
 
         .left h2 {
             color: #c9a876;
-            font-size: 2.4rem;
-            letter-spacing: 5px;
+            font-size: 2.5rem;
+            letter-spacing: 4px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             line-height: 1;
         }
 
         .left h5 {
             color: #382a21;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 400;
             line-height: 1.5;
             padding-left: 14px;
             border-left: 3px solid #c9a876;
         }
 
-        /* Правая колонка с фото */
         .right {
             flex-shrink: 0;
         }
@@ -81,31 +80,29 @@
             box-shadow: 0 6px 18px rgba(56, 42, 33, 0.1);
         }
 
-        /* Блок навигации / кнопок */
+        /* Кнопки навигации */
         .nav-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             align-items: center;
-            padding-top: 22px;
+            padding-top: 20px;
             border-top: 1px solid rgba(201, 168, 118, 0.35);
         }
 
-        /* Базовые стили кнопок-ссылок */
         .nav-actions a {
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 600;
             padding: 11px 22px;
             border-radius: 10px;
-            letter-spacing: 0.3px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             transition: all 0.2s ease;
         }
 
-        /* 1. Создать новую породу */
+        /* 1-я кнопка: Создать */
         .nav-actions a:nth-child(1) {
             background-color: #382a21;
             color: #f0e5d3;
@@ -118,7 +115,7 @@
             color: #382a21;
         }
 
-        /* 2. Изменить данные */
+        /* 2-я кнопка: Изменить */
         .nav-actions a:nth-child(2) {
             background-color: transparent;
             color: #382a21;
@@ -129,7 +126,7 @@
             background-color: #f0e5d3;
         }
 
-        /* 3. Удалить породу */
+        /* 3-я кнопка: Удалить */
         .nav-actions a:nth-child(3) {
             background-color: transparent;
             color: #8a3b3b;
@@ -143,27 +140,27 @@
             border-color: #8a3b3b;
         }
 
-        /* Область основного контента страницы */
+        /* Контейнер основного контента */
         main {
             width: 100%;
             max-width: 960px;
             background-color: #ffffff;
             border: 1px solid #c9a876;
             border-radius: 20px;
-            padding: 30px;
+            padding: 35px;
             box-shadow: 0 10px 30px rgba(56, 42, 33, 0.05);
             min-height: 250px;
         }
 
-        /* Адаптив под мобильные устройства */
+        /* Адаптив под мобилки */
         @media (max-width: 768px) {
             header, main {
-                padding: 22px 18px;
+                padding: 20px 16px;
             }
 
             .header-top {
                 flex-direction: column-reverse;
-                gap: 20px;
+                gap: 18px;
             }
 
             .right, .header-img {
