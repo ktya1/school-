@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Лошади — Грация и Породы</title>
+    <title>Horse Page</title>
     <style>
-        /* Сброс базовых отступов */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -20,71 +19,84 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
+            padding: 30px 15px;
         }
 
-        /* Главная карточка хедера */
+        /* Шапка страницы */
         header {
             width: 100%;
             max-width: 960px;
             background-color: #ffffff;
             border: 1px solid #c9a876;
             border-radius: 20px;
-            padding: 35px 40px;
-            box-shadow: 0 12px 32px rgba(56, 42, 33, 0.08);
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
+            padding: 32px 36px;
+            box-shadow: 0 10px 30px rgba(56, 42, 33, 0.08);
+            margin-bottom: 30px;
         }
 
-        /* Верхняя часть: текст слева, фото справа */
+        /* Верхняя часть: текст слева, картинка справа */
         .header-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 40px;
+            gap: 32px;
+            margin-bottom: 28px;
         }
 
-        /* Заголовок-название слева */
-        header h5 {
+        /* Левая колонка с заголовками */
+        .left {
             flex: 1;
-            font-size: 1.5rem;
-            font-weight: 500;
-            line-height: 1.5;
-            color: #382a21;
-            text-align: left;
-            position: relative;
-            padding-left: 18px;
-            border-left: 3px solid #c9a876; /* Акцентная линия слева */
         }
 
-        /* Фотография справа */
-        .header-img {
-            width: 320px;
-            height: 200px;
+        .left h2 {
+            color: #c9a876;
+            font-size: 2.4rem;
+            letter-spacing: 5px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1;
+        }
+
+        .left h5 {
+            color: #382a21;
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.5;
+            padding-left: 14px;
+            border-left: 3px solid #c9a876;
+        }
+
+        /* Правая колонка с фото */
+        .right {
             flex-shrink: 0;
+        }
+
+        .header-img {
+            width: 280px;
+            height: 180px;
             object-fit: cover;
             border-radius: 14px;
             border: 1px solid #c9a876;
+            display: block;
             box-shadow: 0 6px 18px rgba(56, 42, 33, 0.1);
         }
 
-        /* Нижняя часть: блок с кнопками */
+        /* Блок навигации / кнопок */
         .nav-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 14px;
+            gap: 12px;
             align-items: center;
-            padding-top: 25px;
-            border-top: 1px solid rgba(201, 168, 118, 0.35); /* Разделительная черта сверху */
+            padding-top: 22px;
+            border-top: 1px solid rgba(201, 168, 118, 0.35);
         }
 
-        /* Общие стили кнопок-ссылок */
-        header a {
+        /* Базовые стили кнопок-ссылок */
+        .nav-actions a {
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 600;
-            padding: 12px 24px;
+            padding: 11px 22px;
             border-radius: 10px;
             letter-spacing: 0.3px;
             display: inline-flex;
@@ -93,63 +105,78 @@
             transition: all 0.2s ease;
         }
 
-        /* 1. Главная кнопка: Создать новую породу */
-        header a:nth-of-type(1) {
+        /* 1. Создать новую породу */
+        .nav-actions a:nth-child(1) {
             background-color: #382a21;
             color: #f0e5d3;
             border: 2px solid #382a21;
         }
 
-        header a:nth-of-type(1):hover {
+        .nav-actions a:nth-child(1):hover {
             background-color: #c9a876;
             border-color: #c9a876;
             color: #382a21;
         }
 
-        /* 2. Второстепенная кнопка: Изменить данные */
-        header a:nth-of-type(2) {
+        /* 2. Изменить данные */
+        .nav-actions a:nth-child(2) {
             background-color: transparent;
             color: #382a21;
             border: 2px solid #c9a876;
         }
 
-        header a:nth-of-type(2):hover {
+        .nav-actions a:nth-child(2):hover {
             background-color: #f0e5d3;
         }
 
-        /* 3. Кнопка удаления */
-        header a:nth-of-type(3) {
+        /* 3. Удалить породу */
+        .nav-actions a:nth-child(3) {
             background-color: transparent;
             color: #8a3b3b;
             border: 2px solid rgba(138, 59, 59, 0.35);
-            margin-left: auto; /* Отодвигает кнопку удаления в правый край */
+            margin-left: auto;
         }
 
-        header a:nth-of-type(3):hover {
+        .nav-actions a:nth-child(3):hover {
             background-color: #8a3b3b;
             color: #ffffff;
             border-color: #8a3b3b;
         }
 
-        /* Адаптив для планшетов и смартфонов */
+        /* Область основного контента страницы */
+        main {
+            width: 100%;
+            max-width: 960px;
+            background-color: #ffffff;
+            border: 1px solid #c9a876;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(56, 42, 33, 0.05);
+            min-height: 250px;
+        }
+
+        /* Адаптив под мобильные устройства */
         @media (max-width: 768px) {
-            header {
-                padding: 25px 20px;
+            header, main {
+                padding: 22px 18px;
             }
 
             .header-top {
-                flex-direction: column-reverse; /* На мобилках фото сверху, текст под ним */
+                flex-direction: column-reverse;
                 gap: 20px;
             }
 
-            .header-img {
+            .right, .header-img {
                 width: 100%;
                 height: 200px;
             }
 
-            header h5 {
-                font-size: 1.25rem;
-                padding-left: 14px;
+            .left h2 {
+                font-size: 2rem;
+            }
+
+            .left h5 {
+                font-size: 1.1rem;
             }
 
             .nav-actions {
@@ -157,30 +184,38 @@
                 align-items: stretch;
             }
 
-            header a,
-            header a:nth-of-type(3) {
-                margin-left: 0;
+            .nav-actions a,
+            .nav-actions a:nth-child(3) {
                 width: 100%;
+                margin-left: 0;
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <!-- Верхний ряд: Текст слева, Фото справа -->
-        <div class="header-top">
+<header>
+    <div class="header-top">
+        <div class="left">
+            <h2>HORSE</h2>
             <h5>лошади - это грация в каждом движении. Это необыкновенно и уникально</h5>
-            <img src="https://avatars.mds.yandex.net/i?id=612f92c3f0d96691fcd2302f2c30514c_l-5333380-images-thumbs&n=13" alt="Лошади" class="header-img">
         </div>
 
-        <!-- Нижний ряд: Кнопки действий -->
-        <div class="nav-actions">
-            <a href="">создать новую породу</a>
-            <a href="">изменить данные о породе</a>
-            <a href="">удалить породу</a>
+        <div class="right">
+            <img src="https://i.pinimg.com/originals/b2/3b/f4/b23bf43d0a70911d9602a42ebc6a8bc9.jpg" alt="Лошади" class="header-img">
         </div>
-    </header>
+    </div>
+
+    <div class="nav-actions">
+        <a href="">создать новую породу</a>
+        <a href="">изменить данные о породе</a>
+        <a href="">удалить породу</a>
+    </div>
+</header>
+
+<main>
+    {% block content %} {% endblock %}
+</main>
 
 </body>
 </html>
